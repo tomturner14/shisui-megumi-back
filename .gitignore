@@ -1,7 +1,10 @@
 # ---- Env files (never commit) ----
+node_modules/
 .env
 .env.*
 !.env.example
+.next/
+dist/
 
 # Local test fixtures
 shopify-sample.json
