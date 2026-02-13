@@ -61,7 +61,8 @@ const ALLOWED_ORIGINS = ORIGIN_ENV.split(",").map((s) => s.trim()).filter(Boolea
 app.use(
   (req, res, next) => {
     // WebhookにはCORS不要（Shopifyサーバ→サーバ）
-    if (req.path === "/api/webhook" || req.path === "/webhook") return next();
+    if (req.path.startsWith("/api/webhook") ||
+      req.path.startsWith("/webhook")) return next();
     return cors({
       origin: (origin, cb) => {
         // Same-origin や SSR/ツール(Originなし) は許可
