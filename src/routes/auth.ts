@@ -33,7 +33,8 @@ router.post("/register", async (req, res) => {
     (req.session as any).email = user.email;
 
     return res.json({ ok: true, user });
-  } catch {
+  } catch (error) {
+    console.error("[auth/register]", error);
     return sendError(res, "DB_ERROR");
   }
 });
@@ -61,7 +62,8 @@ router.post("/login", async (req, res) => {
     (req.session as any).userId = user.id;
     (req.session as any).email = user.email;
     return res.json({ ok: true, user: { id: user.id, email: user.email, name: user.name } });
-  } catch {
+  } catch (error) {
+    console.error("[auth/login]", error);
     return sendError(res, "DB_ERROR");
   }
 });
