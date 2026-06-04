@@ -50,6 +50,7 @@ router.get("/", async (_req, res) => {
 
     const items = (json?.data?.products?.edges ?? []).map((e: any) => {
       const v = e?.node?.variants?.edges?.[0]?.node;
+
       return {
         id: e?.node?.id,
         handle: e?.node?.handle,
@@ -57,7 +58,8 @@ router.get("/", async (_req, res) => {
         description: e?.node?.description ?? "",
         image: e?.node?.featuredImage?.url ?? "",
         price: Number(v?.price?.amount ?? 0),
-        available: Boolean(v?.availableForSale ?? true),
+        firstVariantId: v?.id ?? null,
+        available: Boolean(v?.availableForSale ?? false),
       };
     });
 
