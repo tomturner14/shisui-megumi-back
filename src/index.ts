@@ -13,7 +13,6 @@ import authRoutes from "./routes/auth.js";
 import usersRoutes from "./routes/users.js";
 import webhookRoutes from "./routes/webhook.js";
 import meRoutes from "./routes/me.js";
-import devRoutes from "./routes/dev.js";
 import shopifyRoutes from "./routes/shopify.js";
 import productsRoutes from "./routes/products.js";
 import cartRoutes from "./routes/cart.js";
@@ -96,9 +95,6 @@ app.use((req, _res, next) => {
   if (!req.session) req.session = {} as any;
   next();
 });
-
-// 開発用
-app.use("/api/dev", devRoutes);
 
 // ===== API ルート =====
 app.use("/api/auth", authRoutes);
